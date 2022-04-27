@@ -1,0 +1,83 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Produk</th>
+      <th>Harga</th>
+      <th>Jumlah</th>
+      <th>Pembeli</th>
+      <th>Payment</th>
+      <th>Alamat</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i=0; i < transaction.length; i++) { %>
+      <tr>
+          <td> <%=  i + 1 %></td>
+          <td> 
+              
+              <%= transaction[i]?.historyProduct?.name %>
+              <br>
+              <%= transaction[i]?.historyProduct?.categories %>
+              <br>
+              <%= transaction[i]?.historyProduct?.brand %>
+          </td>
+  
+       
+              <td>
+                  <%= transaction[i]?.historyProduct?.value %>
+                  <%= transaction[i]?.historyProduct?.price %>
+              </td>
+              <td>
+                  <%= transaction[i]?.quantity %>
+              </td>
+              <td>
+                <%= transaction[i]?.customer?.name %>
+              </td>
+            <td>
+              <%= transaction[i]?.historyPayment?.bankName %> <br>
+              <%= transaction[i]?.historyPayment?.nomorRekening %>
+          </td>
+          <td>
+            <%= transaction[i]?.alamat.kota %>,<br>
+            <%= transaction[i]?.alamat.provinsi %>
+          </td>
+             
+          <td>
+              <% if(transaction[i].status === 'pending'){ %>
+                  <span class="badge badge-warning">
+                      <%= transaction[i].status %>
+                  </span>
+              <% }else if(transaction[i].status === 'success'){ %>
+                  <span class="badge badge-success">
+                      <%= transaction[i].status %>
+                  </span>
+              <% }else{ %>
+                  <span class="badge badge-danger">
+                      <%= transaction[i].status %>
+                  </span>
+                  <% } %>
+          </td>
+         
+          <td>
+             
+              <form action="/transaction/status/<%= transaction[i]._id %>?status=failed&_method=PUT" method="POST" style="display: inline-block;">
+              
+              <button class="btn btn-danger btn-sm" > 
+                  <i class="fas fa-times-circle"></i> Tolak
+              </button>
+              </form>
+              <form action="/transaction/status/<%= transaction[i]._id %>?status=success&_method=PUT" method="POST" style="display: inline-block;">
+              
+                  <button class="btn btn-info btn-sm" > 
+                      <i class="fas fa-check"></i> Terima
+                  </button>
+                  </form>
+      </td>
+      </tr>
+      <% } %>
+  </tbody>
+    
+  </table>

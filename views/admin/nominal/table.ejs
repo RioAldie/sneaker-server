@@ -1,0 +1,24 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Grade</th>
+      <th>Harga</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% for(let i=0; i < nominal.length; i++) { %>
+        <tr>
+            <td> <%=  i + 1 %></td>
+            <td> <%=  nominal[i].value %></td>
+            <td> <%= nominal[i].price %></td>
+            <td> <form >
+                <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-info"> <i class=" fas fa-pencil-alt "></i> Ubah</a>
+                <a href="/nominal/delete/<%= nominal[i]._id %> " class="btn btn-danger" > <i class="fas fa-trash"></i> Hapus</a>
+            </form></td>
+        </tr>
+        <% } %>
+    </tbody>
+    
+  </table>

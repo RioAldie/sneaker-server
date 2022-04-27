@@ -1,0 +1,24 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Nama</th>
+      <th>Asal</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% for(let i=0; i < brand.length; i++) { %>
+        <tr>
+            <td> <%=  i + 1 %></td>
+            <td> <%=  brand[i].name %></td>
+            <td> <%= brand[i].location %></td>
+            <td> <form >
+                <a href="/brand/edit/<%= brand[i]._id %>" class="btn btn-info"> <i class=" fas fa-pencil-alt "></i> Ubah</a>
+                <a href="/brand/delete/<%= brand[i]._id %> " class="btn btn-danger" > <i class="fas fa-trash"></i> Hapus</a>
+            </form></td>
+        </tr>
+        <% } %>
+    </tbody>
+    
+  </table>
